@@ -5,6 +5,8 @@ from django.http import  HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, CreateView
 
+from .forms import CustomUserCreationForm
+
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -15,7 +17,7 @@ class ProfileView(LoginRequiredMixin, TemplateView):
 
 class RegisterView(CreateView):
     template_name = 'register.html'
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     success_url = reverse_lazy('index')
 
     def form_valid(self, form):
